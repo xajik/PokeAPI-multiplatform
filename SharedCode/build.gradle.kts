@@ -2,6 +2,13 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
+//    kotlin("plugin.serialization") version "1.3.61"
+}
+
+repositories {
+    // artifacts are published to JCenter
+    jcenter()
+    maven ("https://kotlin.bintray.com/kotlinx")
 }
 
 kotlin {
@@ -22,13 +29,33 @@ kotlin {
 
     jvm("android")
 
+    val ktorVersion = "1.3.0"
+    val coroutinesVersion = "1.3.0"
+    val serializationVersion = "0.20.0"
+
     sourceSets["commonMain"].dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
+        implementation("io.ktor:ktor-client-core:$ktorVersion")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutinesVersion")
+//        implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializationVersion")
     }
 
     sourceSets["androidMain"].dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib")
+        implementation("io.ktor:ktor-client-android:$ktorVersion")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+//        implementation ("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializationVersion")
     }
+
+    sourceSets["iosMain"].dependencies {
+        implementation("io.ktor:ktor-client-ios:$ktorVersion")
+        //implementation("io.ktor:ktor-client-core-native:$ktorVersion")
+        //implementation("io.ktor:ktor-client-json-native:$ktorVersion")
+        //implementation("io.ktor:ktor-client-logging-native:$ktorVersion")
+        implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion")
+//        implementation ("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serializationVersion")
+    }
+
 }
 
 val packForXcode by tasks.creating(Sync::class) {
