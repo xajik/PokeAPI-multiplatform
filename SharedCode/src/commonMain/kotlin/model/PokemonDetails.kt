@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Pokemon (
+data class PokemonDetails (
     val abilities: List<Ability>,
 
     @SerialName("base_experience")

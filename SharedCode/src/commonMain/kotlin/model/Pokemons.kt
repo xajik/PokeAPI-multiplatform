@@ -7,11 +7,11 @@ data class Pokemons (
     val count: Long,
     val next: String,
     val previous: String? = null,
-    val results: List<Result>
+    val results: List<Pokemon>
 )
 
 @Serializable
-data class Result (
+data class Pokemon (
     val name: String,
     val url: String
 )

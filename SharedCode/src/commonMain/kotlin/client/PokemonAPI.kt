@@ -1,6 +1,6 @@
 package com.pokeapi.client
 
-import com.pokeapi.model.Pokemon
+import com.pokeapi.model.PokemonDetails
 import com.pokeapi.model.Pokemons
 import com.pokeapi.network.engine
 import io.ktor.client.HttpClient
@@ -17,8 +17,8 @@ class PokemonRepository {
         }
     }
 
-    suspend fun get(id: Int): Pokemon = client.get("https://pokeapi.co/api/v2/pokemon/$id")
+    suspend fun get(id: Int): PokemonDetails = client.get("https://pokeapi.co/api/v2/pokemon/$id")
 
-    suspend fun getAll(): List<Pokemons> = client.get("https://pokeapi.co/api/v2/pokemon/")
+    suspend fun getAll(): Pokemons = client.get("https://pokeapi.co/api/v2/pokemon/")
 
 }
