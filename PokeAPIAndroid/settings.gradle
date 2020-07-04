@@ -2,3 +2,5 @@ rootProject.name='PokemonApiAndroid'
 include ':app'
 include ':SharedCode'
 project(':SharedCode').projectDir = new File(settingsDir, '..\\SharedCode')
+
+
