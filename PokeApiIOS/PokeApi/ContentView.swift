@@ -10,13 +10,30 @@ import SwiftUI
 import SharedCode
 
 struct ContentView: View {
-    var body: some View {
-        Text(CommonKt.createApplicationScreenMessage())
+
+  @EnvironmentObject var pmo: PokemonObserver
+
+  var body: some View {
+    NavigationView {
+      VStack {
+        List(pmo.items) { item in
+          PokemonRowView(item: item)
+        };
+        Button(action: {
+          self.pmo.load()
+        }) {
+          Text("Load Pokemons")
+            .font(.title)
+            .padding()
+        };
+      }
+      .navigationBarTitle("Pokemon API Kotlin/Native")
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
